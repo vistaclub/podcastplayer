@@ -8,6 +8,7 @@
 
 import Cocoa
 import AVFoundation
+import WebKit
 
 class EpisodesViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
@@ -15,6 +16,7 @@ class EpisodesViewController: NSViewController, NSTableViewDataSource, NSTableVi
     @IBOutlet weak var imageView: NSImageView!
     @IBOutlet weak var pausePlayButton: NSButton!
     @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var deleteButton: NSButton!
     
     var podcast : Podcast? = nil
     var podcastVC : PodcastViewController? = nil
@@ -24,6 +26,7 @@ class EpisodesViewController: NSViewController, NSTableViewDataSource, NSTableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        updateView()
     }
     
     func updateView() {
@@ -39,6 +42,14 @@ class EpisodesViewController: NSViewController, NSTableViewDataSource, NSTableVi
             imageView.image = image
         } else {
             imageView.image = nil
+        }
+        
+        if podcast != nil {
+            tableView.isHidden = false
+            deleteButton.isHidden = false
+        } else {
+            tableView.isHidden = true
+            deleteButton.isHidden = true
         }
         
         pausePlayButton.isHidden = true
@@ -87,6 +98,13 @@ class EpisodesViewController: NSViewController, NSTableViewDataSource, NSTableVi
     
     
     @IBAction func pausePlayClicked(_ sender: Any) {
+        if pausePlayButton.title == "Pause" {
+            player?.pause()
+            pausePlayButton.title = "Play"
+        } else {
+            player?.play()
+            pausePlayButton.title = "Play"
+        }
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -95,18 +113,33 @@ class EpisodesViewController: NSViewController, NSTableViewDataSource, NSTableVi
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let episode = episodes[row]
-        let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "episodeCell"), owner: self) as? NSTableCellView
-        cell?.textField?.stringValue = episode.title
+        let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "episodeCell"), owner: self) as? EpisodeCell
+        cell?.titleLabel.stringValue = episode.title
+        // cell?.descriptionWebView.loadHTMHLString(episode.htmlDescription, baseURL:nil)
+        
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "MMM d, yyyy"
+        cell?.pubDateLabel.stringValue = dateformatter.string(from: episode.pubDate)
         return cell
+    }
+    
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return 100
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         if tableView.selectedRow >= 0 {
             let episode = episodes[tableView.selectedRow]
             if let url = URL(string: episode.audioURL) {
+            //if let url = URL(string: "http://www.espn.com/espnradio/play?id=23828390") {
+                player?.pause()
+                player = nil
+                
                 player = AVPlayer(url: url)
                 player?.play()
             }
+            pausePlayButton.isHidden = false
+            pausePlayButton.title = "Pause"
         }
     }
 }

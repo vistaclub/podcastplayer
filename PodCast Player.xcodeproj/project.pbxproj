@@ -18,6 +18,7 @@
 		1556BC2020DB4E3E0091567C /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1556BC1F20DB4E3E0091567C /* EpisodesViewController.swift */; };
 		1556BC2220DB5B780091567C /* TheSplitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1556BC2120DB5B780091567C /* TheSplitController.swift */; };
 		1556BC2420DB65F70091567C /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1556BC2320DB65F70091567C /* Episode.swift */; };
+		1599C60B20DC209F00D5E969 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599C60A20DC209F00D5E969 /* EpisodeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		1556BC1F20DB4E3E0091567C /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
 		1556BC2120DB5B780091567C /* TheSplitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheSplitController.swift; sourceTree = "<group>"; };
 		1556BC2320DB65F70091567C /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		1599C60A20DC209F00D5E969 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				1556BC0020DACE4B0091567C /* AppDelegate.swift */,
 				1556BC2320DB65F70091567C /* Episode.swift */,
 				1556BC1820DAD0AD0091567C /* Parser.swift */,
+				1599C60A20DC209F00D5E969 /* EpisodeCell.swift */,
 				1556BC1F20DB4E3E0091567C /* EpisodesViewController.swift */,
 				1556BC0220DACE4B0091567C /* PodcastViewController.swift */,
 				1556BC2120DB5B780091567C /* TheSplitController.swift */,
@@ -174,6 +177,7 @@
 				1556BC2020DB4E3E0091567C /* EpisodesViewController.swift in Sources */,
 				1556BC0620DACE4B0091567C /* PodCast_Player.xcdatamodeld in Sources */,
 				1556BC2220DB5B780091567C /* TheSplitController.swift in Sources */,
+				1599C60B20DC209F00D5E969 /* EpisodeCell.swift in Sources */,
 				1556BC0120DACE4B0091567C /* AppDelegate.swift in Sources */,
 				1556BC1620DAD0780091567C /* SWXMLHash.swift in Sources */,
 				1556BC2420DB65F70091567C /* Episode.swift in Sources */,
