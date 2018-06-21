@@ -10,7 +10,7 @@ import Cocoa
 import AVFoundation
 import WebKit
 
-class EpisodesViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class EpisodesViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, WKUIDelegate {
 
     @IBOutlet weak var titleLabel: NSTextField!
     @IBOutlet weak var imageView: NSImageView!
@@ -22,7 +22,7 @@ class EpisodesViewController: NSViewController, NSTableViewDataSource, NSTableVi
     var podcastVC : PodcastViewController? = nil
     var episodes : [Episode] = []
     var player: AVPlayer? = nil
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -115,7 +115,7 @@ class EpisodesViewController: NSViewController, NSTableViewDataSource, NSTableVi
         let episode = episodes[row]
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "episodeCell"), owner: self) as? EpisodeCell
         cell?.titleLabel.stringValue = episode.title
-        // cell?.descriptionWebView.loadHTMHLString(episode.htmlDescription, baseURL:nil)
+        cell?.descriptionWebView.loadHTMLString(episode.htmlDescription, baseURL: nil)
         
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "MMM d, yyyy"
